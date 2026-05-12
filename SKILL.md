@@ -1,7 +1,10 @@
-# Attention Scalper
+---
+name: Attention Scalper
+description: An execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects.
+topic: Topic 1 — Hackathon Project Social Playbook Skill
+---
 
-**Category:** Colosseum Hackathon
-**Topic:** Topic 1 — Hackathon Project Social Playbook Skill
+# Attention Scalper
 
 ## Description
 The Attention Scalper is an execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects. It operates by treating social media attention as a quantifiable market, producing highly-engineered content strategies without the standard "AI slop" or marketing buzzwords.
