@@ -1,5 +1,5 @@
 {
-  "name": "sagapad-quantitative-narrative-engine",
+  "name": "attention-scalper",
   "version": "1.0.0",
   "description": "An AI agent skill that generates deterministic X (Twitter) growth playbooks for hackathon projects.",
   "main": "dist/index.js",

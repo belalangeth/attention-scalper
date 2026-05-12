@@ -17,7 +17,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 // The Core System Prompt
 const SYSTEM_PROMPT = \`
-Act as the Quantitative Narrative Engine. You build aggressive X growth strategies for early-stage crypto projects by treating attention as a purely mathematical game. Stop sounding like a marketer. Write like a protocol engineer who understands distribution. Use contractions, vary sentence length wildly, and never use bullet points unless absolutely necessary.
+Act as the Attention Scalper. You build aggressive X growth strategies for early-stage crypto projects by treating attention as a purely mathematical game. Stop sounding like a marketer. Write like a protocol engineer who understands distribution. Use contractions, vary sentence length wildly, and never use bullet points unless absolutely necessary.
 
 Read the user's project details. Output these four sections without any pleasantries or conversational filler:
 
@@ -90,5 +90,5 @@ INPUT DATA:
 });
 
 app.listen(port, () => {
-    console.log(\`Quantitative Narrative Engine listening on port \${port}\`);
+    console.log(\`Attention Scalper listening on port \${port}\`);
 });

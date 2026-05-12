@@ -1,11 +1,11 @@
-# Quantitative Narrative Engine (QNE)
+# Attention Scalper
 
 An AI Agent Skill built for the **SagaPad Colosseum Hackathon Track**.
 
-The Quantitative Narrative Engine is an execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects. It operates by treating social media attention as a quantifiable market, producing highly-engineered content strategies.
+The Attention Scalper is an execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects. It operates by treating social media attention as a quantifiable market, producing highly-engineered content strategies.
 
 ## Overview
-This repository contains the backend Express API wrapper that powers the QNE Skill. It takes in project parameters (Tech Stack, One-Liner, Target Audience) and interfaces with the Gemini API to output a structured, multi-phase growth playbook.
+This repository contains the backend Express API wrapper that powers the Attention Scalper Skill. It takes in project parameters (Tech Stack, One-Liner, Target Audience) and interfaces with the Gemini API to output a structured, multi-phase growth playbook.
 
 **Topic Addressed:** Topic 1 — Hackathon Project Social Playbook Skill
 
@@ -19,8 +19,8 @@ This repository contains the backend Express API wrapper that powers the QNE Ski
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/belalangeth/sagapad-quantitative-narrative-engine.git
-   cd sagapad-quantitative-narrative-engine
+   git clone https://github.com/belalangeth/attention-scalper.git
+   cd attention-scalper
    ```
 
 2. Install dependencies:
