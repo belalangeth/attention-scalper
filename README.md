@@ -91,4 +91,4 @@ The skill exposes a single POST endpoint to generate the playbook.
 - `openai` (OpenRouter Integration)
 
 ## SagaPad Skill Link
-[Insert your published SagaPad Skill link here]
+https://sagapad.com/skills/attention-scalper
