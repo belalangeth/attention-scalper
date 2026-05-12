@@ -54,6 +54,10 @@ The skill exposes a single POST endpoint to generate the playbook.
 }
 ```
 
+## Example Output
+*The Engine outputs strict, high-converting copy without AI slop:*
+> "The market stops being deterministic exactly 120 seconds into a micro-trend. Anything after that is just trading noise and praying for liquidity. We built Theta Scalper to exploit that specific opening using a Python and Linux backbone. Stop guessing on entries."
+
 ## Built With
 - Node.js & Express
 - TypeScript
