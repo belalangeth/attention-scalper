@@ -1,5 +1,5 @@
 ---
-name: Attention Scalper
+name: attention-scalper
 description: An execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects.
 topic: Topic 1 — Hackathon Project Social Playbook Skill
 ---
