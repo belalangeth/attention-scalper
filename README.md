@@ -19,7 +19,7 @@ This repository contains the backend Express API wrapper that powers the QNE Ski
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/sagapad-quantitative-narrative-engine.git
+   git clone https://github.com/belalangeth/sagapad-quantitative-narrative-engine.git
    cd sagapad-quantitative-narrative-engine
    ```
 
