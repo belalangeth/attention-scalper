@@ -1,13 +1,24 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import OpenAI from 'openai';
 
 dotenv.config();
 
 const app = express();
+app.use(helmet()); // Secure HTTP headers
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10kb' })); // Limit payload size to prevent DOS
+
+// Rate Limiting: Max 15 requests per 15 minutes per IP
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 15,
+    message: { error: "Too many requests, please try again later." }
+});
+app.use('/api/', limiter);
 
 const port = process.env.PORT || 3000;
 
@@ -60,6 +71,19 @@ app.post('/api/generate-playbook', async (req: Request, res: Response) => {
         // Validate basic inputs
         if (!payload.project_name || !payload.one_liner || !payload.target_audience || !payload.tech_stack) {
             res.status(400).json({ error: "Missing required fields." });
+            return;
+        }
+
+        // Strict length validation to prevent prompt injection / context bloat attacks
+        const MAX_LEN = 300;
+        if (
+            payload.project_name.length > MAX_LEN || 
+            payload.one_liner.length > 1000 || 
+            payload.target_audience.length > MAX_LEN || 
+            payload.tech_stack.length > MAX_LEN ||
+            (payload.team_background && payload.team_background.length > 1000)
+        ) {
+            res.status(400).json({ error: "Input fields exceed maximum allowed length." });
             return;
         }
 

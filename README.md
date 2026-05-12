@@ -12,6 +12,7 @@ This repository contains the backend Express API wrapper that powers the Attenti
 ## Features
 - **Algorithmic Routing:** Automatically determines the correct narrative tone based on a project's tech stack.
 - **Structured JSON Output:** Returns clean, parseable JSON instantly consumable by any frontend.
+- **Enterprise Security:** Built-in rate limiting, HTTP header protection (`helmet`), and strict payload validation to prevent prompt injection and DDOS.
 - **Docker Ready:** Includes a `Dockerfile` for instant, one-click deployment to Railway, Render, or AWS.
 - **4-Week Scalping Calendar:** Generates a daily content schedule for the first month.
 - **The Genesis Thread:** Writes the exact, word-for-word copy for a project's initial 5 launch posts.
