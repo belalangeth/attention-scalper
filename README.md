@@ -5,7 +5,7 @@ An AI Agent Skill built for the **SagaPad Colosseum Hackathon Track**.
 The Attention Scalper is an execution bot designed to generate deterministic, 4-week X (Twitter) growth playbooks for early-stage crypto and hackathon projects. It operates by treating social media attention as a quantifiable market, producing highly-engineered content strategies.
 
 ## Overview
-This repository contains the backend Express API wrapper that powers the Attention Scalper Skill. It takes in project parameters (Tech Stack, One-Liner, Target Audience) and interfaces with the Gemini API to output a structured, multi-phase growth playbook.
+This repository contains the backend Express API wrapper that powers the Attention Scalper Skill. It takes in project parameters (Tech Stack, One-Liner, Target Audience) and interfaces with OpenRouter to output a structured, multi-phase growth playbook.
 
 **Topic Addressed:** Topic 1 — Hackathon Project Social Playbook Skill
 
@@ -29,7 +29,7 @@ This repository contains the backend Express API wrapper that powers the Attenti
    ```
 
 3. Configure Environment Variables:
-   Copy the example file and add your Gemini API Key.
+   Copy the example file and add your OpenRouter API Key.
    ```bash
    cp .env.example .env
    ```
@@ -61,7 +61,7 @@ The skill exposes a single POST endpoint to generate the playbook.
 ## Built With
 - Node.js & Express
 - TypeScript
-- `@google/genai` (Gemini 2.5 Pro)
+- `openai` (OpenRouter Integration)
 
 ## SagaPad Skill Link
 [Insert your published SagaPad Skill link here]

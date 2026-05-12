@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { GoogleGenAI } from '@google/genai';
+import OpenAI from 'openai';
 
 dotenv.config();
 
@@ -11,9 +11,11 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-// Initialize Gemini SDK
-// Note: In a production environment, ensure your API key is secure.
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+// Initialize OpenAI SDK to point to OpenRouter
+const openai = new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OPENROUTER_API_KEY || '',
+});
 
 // The Core System Prompt
 const SYSTEM_PROMPT = \`
@@ -63,15 +65,16 @@ INPUT DATA:
 - Team Background: ${payload.team_background || 'N/A'}
         `;
 
-        // Call the Gemini Model
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-pro',
-            contents: [
-                { role: 'user', parts: [{ text: SYSTEM_PROMPT + '\n\n' + userPrompt }] }
+        // Call the OpenRouter API
+        const response = await openai.chat.completions.create({
+            model: 'meta-llama/llama-3.3-70b-instruct', // High quality, low cost model
+            messages: [
+                { role: 'system', content: SYSTEM_PROMPT },
+                { role: 'user', content: userPrompt }
             ]
         });
 
-        const generatedPlaybook = response.text;
+        const generatedPlaybook = response.choices[0].message.content;
 
         // Return the playbook to the client
         res.json({
