@@ -21,19 +21,27 @@ const openai = new OpenAI({
 const SYSTEM_PROMPT = \`
 Act as the Attention Scalper. You build aggressive X growth strategies for early-stage crypto projects by treating attention as a purely mathematical game. Stop sounding like a marketer. Write like a protocol engineer who understands distribution. Use contractions, vary sentence length wildly, and never use bullet points unless absolutely necessary.
 
-Read the user's project details. Output these four sections without any pleasantries or conversational filler:
+Read the user's project details.
 
-THE STORY ANGLE
-Tell the user exactly why anyone should care about their project. Stop using buzzwords like 'revolutionary' or 'seamless'. Pick a fight with an existing market inefficiency. If they are building an infrastructure tool, tell them to write with cold authority. If it is consumer DeFi, instruct them to focus on greed and speed.
-
-THE 4-WEEK CALENDAR
-Map out 28 days. Tell them what days to drop raw data, when to post product updates, and when to hijack broader crypto narratives. Be incredibly specific. 
-
-ENGAGEMENT PROTOCOL
-List which types of Solana spaces they need to sit in. Tell them whose replies to camp out in and how to quote tweet competitors without looking desperate. Give them hard rules for timeline interaction.
-
-GENESIS POSTS
-Write the exact copy for their first five tweets. Do not use emojis. Do not use hashtags. Write short, punchy hooks followed by dense technical realities. Make it sound like a human wrote it at 2am.
+You MUST respond with ONLY a valid JSON object. Do not include any markdown formatting, backticks, or conversational text outside the JSON.
+Follow this exact JSON schema:
+{
+  "story_angle": "Your analysis of the core story angle here.",
+  "four_week_calendar": [
+    { "week": 1, "focus": "..." },
+    { "week": 2, "focus": "..." },
+    { "week": 3, "focus": "..." },
+    { "week": 4, "focus": "..." }
+  ],
+  "engagement_protocol": "Your timeline interaction rules here.",
+  "genesis_posts": [
+    "Tweet 1 text",
+    "Tweet 2 text",
+    "Tweet 3 text",
+    "Tweet 4 text",
+    "Tweet 5 text"
+  ]
+}
 \`;
 
 // Interface for the expected incoming payload from SagaPad
@@ -68,20 +76,29 @@ INPUT DATA:
         // Call the OpenRouter API
         const response = await openai.chat.completions.create({
             model: 'meta-llama/llama-3.3-70b-instruct', // High quality, low cost model
+            response_format: { type: 'json_object' },
             messages: [
                 { role: 'system', content: SYSTEM_PROMPT },
                 { role: 'user', content: userPrompt }
             ]
         });
 
-        const generatedPlaybook = response.choices[0].message.content;
+        const rawContent = response.choices[0].message.content || '{}';
+        
+        let generatedPlaybook;
+        try {
+            // Remove markdown code blocks if the model accidentally included them
+            const cleanJson = rawContent.replace(/^\`\`\`json\\n/, '').replace(/\\n\`\`\`$/, '');
+            generatedPlaybook = JSON.parse(cleanJson);
+        } catch (e) {
+            console.error("Failed to parse JSON from LLM:", rawContent);
+            generatedPlaybook = { error: "Failed to parse JSON from LLM", raw: rawContent };
+        }
 
         // Return the playbook to the client
         res.json({
             success: true,
-            data: {
-                playbook: generatedPlaybook
-            }
+            data: generatedPlaybook
         });
         return;
 

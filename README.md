@@ -10,9 +10,10 @@ This repository contains the backend Express API wrapper that powers the Attenti
 **Topic Addressed:** Topic 1 — Hackathon Project Social Playbook Skill
 
 ## Features
-- **Algorithmic Routing:** Automatically determines the correct narrative tone based on a project's tech stack (e.g., Infrastructure/Quant vs. Consumer/DeFi).
+- **Algorithmic Routing:** Automatically determines the correct narrative tone based on a project's tech stack.
+- **Structured JSON Output:** Returns clean, parseable JSON instantly consumable by any frontend.
+- **Docker Ready:** Includes a `Dockerfile` for instant, one-click deployment to Railway, Render, or AWS.
 - **4-Week Scalping Calendar:** Generates a daily content schedule for the first month.
-- **Engagement Strategy:** Identifies high-value ecosystem integration points (Spaces, AMAs).
 - **The Genesis Thread:** Writes the exact, word-for-word copy for a project's initial 5 launch posts.
 
 ## Installation & Setup
@@ -39,6 +40,13 @@ This repository contains the backend Express API wrapper that powers the Attenti
    npm run dev
    ```
 
+### Docker Deployment
+To deploy using Docker, simply build and run the image:
+```bash
+docker build -t attention-scalper .
+docker run -p 3000:3000 --env-file .env attention-scalper
+```
+
 ## API Usage
 The skill exposes a single POST endpoint to generate the playbook.
 
@@ -54,9 +62,27 @@ The skill exposes a single POST endpoint to generate the playbook.
 }
 ```
 
-## Example Output
-*The Engine outputs strict, high-converting copy without AI slop:*
-> "The market stops being deterministic exactly 120 seconds into a micro-trend. Anything after that is just trading noise and praying for liquidity. We built Theta Scalper to exploit that specific opening using a Python and Linux backbone. Stop guessing on entries."
+## Example Output (JSON)
+*The Engine outputs strict, frontend-ready JSON without AI slop:*
+```json
+{
+  "success": true,
+  "data": {
+    "story_angle": "Prediction markets are bleeding money to sentiment traders...",
+    "four_week_calendar": [
+      {
+        "week": 1,
+        "focus": "Deploy raw backtest data and architecture flexing."
+      }
+    ],
+    "engagement_protocol": "Camp out in core MEV searcher replies. Quote tweet...",
+    "genesis_posts": [
+      "The market stops being deterministic exactly 120 seconds into a micro-trend...",
+      "Standard RPC latency kills alpha before you even see the chart move..."
+    ]
+  }
+}
+```
 
 ## Built With
 - Node.js & Express
